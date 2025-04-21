@@ -11,11 +11,7 @@ import org.jboss.logging.Logger;
 import org.keycloak.authentication.AuthenticationFlowContext;
 import org.keycloak.authentication.AuthenticationFlowError;
 import org.keycloak.authentication.Authenticator;
-import org.keycloak.models.ClientModel;
-import org.keycloak.models.GroupModel;
-import org.keycloak.models.KeycloakSession;
-import org.keycloak.models.RealmModel;
-import org.keycloak.models.UserModel;
+import org.keycloak.models.*;
 import com.defenseunicorns.uds.keycloak.plugin.Common;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -25,6 +21,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class RequireGroupAuthenticator implements Authenticator {
 
     private static final Logger LOGGER = Logger.getLogger(RequireGroupAuthenticator.class.getName());
+
+    public static final String TAC_USER_ATTRIBUTE = "uds.tac.session.id";
 
     @Override
     public void authenticate(final AuthenticationFlowContext context) {
@@ -110,10 +108,12 @@ public class RequireGroupAuthenticator implements Authenticator {
         GroupModel currentGroup = group;
         while (currentGroup != null) {
             String groupName = currentGroup.getName();
-            //  disallow slashes in group names to protect against Keycloak allowing unescaped slashes in group names until https://github.com/defenseunicorns/uds-identity-config/issues/118
-            if (groupName.contains("/")) {
-                LOGGER.errorf("Group name '%s' contains a slash", groupName);
-                throw new IllegalArgumentException("Group names cannot contain slashes");
+            // Disallow slashes in the group unless they are prefixed by a tilde ~
+            // See https://www.keycloak.org/docs/latest/upgrading/index.html#escaping-slashes-in-group-paths
+            // Regexp tester: https://regex101.com/r/BgkuuO/1
+            if (groupName.matches(".*(?<!~)/.*")) {
+                LOGGER.errorf("Group name '%s' contains a disallowed slash", groupName);
+                throw new IllegalArgumentException("Group names cannot contain slashes unless prefixed with '~'");
             }
             path.insert(0, "/" + groupName);
             currentGroup = currentGroup.getParent();
@@ -121,9 +121,45 @@ public class RequireGroupAuthenticator implements Authenticator {
         return path.toString();
     }
 
-    private void success(final AuthenticationFlowContext context, final UserModel user) {
-        user.addRequiredAction("TERMS_AND_CONDITIONS");
+    protected void success(final AuthenticationFlowContext context, final UserModel user) {
+        boolean shouldAddTAC = true;
+
+        if (isConditionalTACActive(context)) {
+            String parentSessionId = context.getAuthenticationSession().getParentSession().getId();
+            if (user.getAttributes().get(TAC_USER_ATTRIBUTE) != null) {
+                String userSessionId = user.getAttributes().get(TAC_USER_ATTRIBUTE).get(0);
+                if (parentSessionId.equals(userSessionId)) {
+                    shouldAddTAC = false;
+                    LOGGER.trace("User already accepted Terms and Conditions for this session. Skipping...");
+                } else {
+                    LOGGER.trace("Stale session detected, asking user to accept Terms and Conditions again");
+                }
+            } else {
+                LOGGER.trace("User hasn't accepted Terms and Conditions. Requesting user accept them.");
+            }
+            user.setAttribute(TAC_USER_ATTRIBUTE, Arrays.asList(parentSessionId));
+        } else {
+            // Keycloak admins configured the plugin to ask for TAC every time
+            shouldAddTAC = true;
+        }
+
+        if (shouldAddTAC) {
+            user.addRequiredAction("TERMS_AND_CONDITIONS");
+        }
         context.success();
+    }
+
+    protected boolean isConditionalTACActive(AuthenticationFlowContext context) {
+        LOGGER.trace("Evaluating conditional TAC");
+        AuthenticatorConfigModel authConfig = context.getAuthenticatorConfig();
+        if (authConfig != null && authConfig.getConfig() != null) {
+            String tocPerSession = authConfig.getConfig().get(RequireGroupAuthenticatorFactory.TOC_PER_SESSION_CONFIG_NAME);
+            LOGGER.tracef("Custom Authentication Config is configured, TAC per session setting: %s", tocPerSession);
+            return Boolean.valueOf(tocPerSession);
+        } else {
+            LOGGER.trace("No AuthenticatorConfig is configured, using default (true) value");
+        }
+        return true;
     }
 
     private boolean isMemberOfExactGroup(UserModel user, GroupModel group) {
