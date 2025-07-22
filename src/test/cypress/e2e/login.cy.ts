@@ -7,7 +7,7 @@ import { RegistrationFormData } from "../support/types";
 
 describe("Login Flow", () => {
   it("Existing User", () => {
-    // existing user created in test realm.json
+    // existing user
     const formData: RegistrationFormData = {
       firstName: "Testing",
       lastName: "User",
@@ -32,6 +32,6 @@ describe("Login Flow", () => {
     cy.loginUser(formData.username, formData.password);
 
     // user doesn't exist or password is incorrect
-    cy.contains("span", "Invalid username or password.").should("be.visible");
+    cy.contains("p", "Invalid username or password.").should("be.visible");
   });
 });

@@ -1,5 +1,278 @@
 # Changelog
 
+## [0.16.0](https://github.com/defenseunicorns/uds-identity-config/compare/v0.15.2...v0.16.0) (2025-07-21)
+
+
+### Features
+
+* aws alb support ([#541](https://github.com/defenseunicorns/uds-identity-config/issues/541)) ([5f3fc0c](https://github.com/defenseunicorns/uds-identity-config/commit/5f3fc0c8f9c0524671892a70cff2b7d209c6c924))
+
+
+### Bug Fixes
+
+* **deps:** update plugin-deps ([#537](https://github.com/defenseunicorns/uds-identity-config/issues/537)) ([a85a1f9](https://github.com/defenseunicorns/uds-identity-config/commit/a85a1f98c0d69bcc8ec5e78addf0932b6cbd76cc))
+
+
+### Miscellaneous
+
+* **deps:** update all dependencies ([#542](https://github.com/defenseunicorns/uds-identity-config/issues/542)) ([6ef6bc7](https://github.com/defenseunicorns/uds-identity-config/commit/6ef6bc72ddb841329cdff581518d868829aeed26))
+* **deps:** update dependency cypress to v14.5.2 ([#546](https://github.com/defenseunicorns/uds-identity-config/issues/546)) ([9507a0a](https://github.com/defenseunicorns/uds-identity-config/commit/9507a0a69dc37d26094a68f3d2e364e86b245d5b))
+* **deps:** update gha-deps to v0.27.9 ([#543](https://github.com/defenseunicorns/uds-identity-config/issues/543)) ([05c2bca](https://github.com/defenseunicorns/uds-identity-config/commit/05c2bcaf3271b2899e1126149f0ace14b77c9077))
+
+## [0.15.2](https://github.com/defenseunicorns/uds-identity-config/compare/v0.15.1...v0.15.2) (2025-07-03)
+
+
+### Bug Fixes
+
+* theming updates for mobile/desktop ([#533](https://github.com/defenseunicorns/uds-identity-config/issues/533)) ([8be09b2](https://github.com/defenseunicorns/uds-identity-config/commit/8be09b2088515c5f743af5cf5a5fc2acae151f52))
+
+
+### Miscellaneous
+
+* **deps:** update all dependencies ([#526](https://github.com/defenseunicorns/uds-identity-config/issues/526)) ([42f0a63](https://github.com/defenseunicorns/uds-identity-config/commit/42f0a631d92ec093633dd2003922713491471db1))
+* **deps:** update all dependencies ([#535](https://github.com/defenseunicorns/uds-identity-config/issues/535)) ([228e107](https://github.com/defenseunicorns/uds-identity-config/commit/228e10775dbbf0d45aa32c793e3bb848d4896673))
+* **deps:** update gha-deps to v0.27.8 ([#538](https://github.com/defenseunicorns/uds-identity-config/issues/538)) ([4a2004a](https://github.com/defenseunicorns/uds-identity-config/commit/4a2004aa63324cbdfc85622309d403d754502ad7))
+* remove renovate-readiness, remove chainguard ref, break up integration test task ([#539](https://github.com/defenseunicorns/uds-identity-config/issues/539)) ([5e0201f](https://github.com/defenseunicorns/uds-identity-config/commit/5e0201f1cfa56fcf6587cba2be20bfa081dc6d28))
+
+## [0.15.1](https://github.com/defenseunicorns/uds-identity-config/compare/v0.15.0...v0.15.1) (2025-06-27)
+
+
+### Bug Fixes
+
+* mobile responsiveness for kc theme ([#531](https://github.com/defenseunicorns/uds-identity-config/issues/531)) ([b614ebb](https://github.com/defenseunicorns/uds-identity-config/commit/b614ebb42db88e7f7955630d55d353d03c23eb4d))
+
+
+### Miscellaneous
+
+* add docs to release-please config ([#524](https://github.com/defenseunicorns/uds-identity-config/issues/524)) ([acda595](https://github.com/defenseunicorns/uds-identity-config/commit/acda59516b82b03caae2d01f34a4f5cfac910500))
+
+
+### Documentation
+
+* update t&c doc ([#523](https://github.com/defenseunicorns/uds-identity-config/issues/523)) ([f051503](https://github.com/defenseunicorns/uds-identity-config/commit/f051503ba7cbbdbe361ad67c9d4b5fc6f528c825))
+* update theme documentation, add doc shim ([#527](https://github.com/defenseunicorns/uds-identity-config/issues/527)) ([beabe41](https://github.com/defenseunicorns/uds-identity-config/commit/beabe416ea5ddf65055d9f97e80fefa825a799d1))
+
+## [0.15.0](https://github.com/defenseunicorns/uds-identity-config/compare/v0.14.1...v0.15.0) (2025-06-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* The new Keycloak Theme provided by the UDS Identity config changes the template pages (and images it uses) in a non-compatible way. If you're using a forked version of the UDS Identity Config, you might want to either re-introduce your changes on top of the existing ones or completely replace the theme with your own.
+
+### Features
+
+* new Keycloak theme (https://github.com/defenseunicorns/uds-identity-config/pull/497) ([cd656f7](https://github.com/defenseunicorns/uds-identity-config/commit/cd656f753e984b92080ef34fc64bf5b252d98178))
+
+
+### Bug Fixes
+
+* **deps:** update plugin-deps to v26.2.5 ([#498](https://github.com/defenseunicorns/uds-identity-config/issues/498)) ([cbeff00](https://github.com/defenseunicorns/uds-identity-config/commit/cbeff0073781d69928df4244e0db5f155845fdbf))
+* version in upgrade docs ([#499](https://github.com/defenseunicorns/uds-identity-config/issues/499)) ([69ff8b3](https://github.com/defenseunicorns/uds-identity-config/commit/69ff8b3c9ae19f6aa1d2f0482995229565a946eb))
+
+
+### Miscellaneous
+
+* **deps:** update all dependencies ([#490](https://github.com/defenseunicorns/uds-identity-config/issues/490)) ([d3b346f](https://github.com/defenseunicorns/uds-identity-config/commit/d3b346fe7f086c6ef703316fe4c408822dce325a))
+* **deps:** update all dependencies ([#506](https://github.com/defenseunicorns/uds-identity-config/issues/506)) ([c9630c2](https://github.com/defenseunicorns/uds-identity-config/commit/c9630c24967f3770fb6803cc4d2b5de642a2587a))
+* **deps:** update all dependencies ([#510](https://github.com/defenseunicorns/uds-identity-config/issues/510)) ([38b00aa](https://github.com/defenseunicorns/uds-identity-config/commit/38b00aa7e409f99facfd5e6ca6cc217cd69c5ee0))
+* **deps:** update all dependencies ([#515](https://github.com/defenseunicorns/uds-identity-config/issues/515)) ([2202796](https://github.com/defenseunicorns/uds-identity-config/commit/2202796b112593544a0a799a0d02dc23f90bca56))
+* **deps:** update dependency cypress to v14.4.1 ([#503](https://github.com/defenseunicorns/uds-identity-config/issues/503)) ([f014a1c](https://github.com/defenseunicorns/uds-identity-config/commit/f014a1cd1de4443a6480681ed9123c9b80874cc9))
+* **deps:** update dependency defenseunicorns/uds-common to v1.16.2 ([#520](https://github.com/defenseunicorns/uds-identity-config/issues/520)) ([9139aac](https://github.com/defenseunicorns/uds-identity-config/commit/9139aaccd5268f667be267b36c2736c258b9ed82))
+* **deps:** update dependency prettier to v3.6.0 ([#516](https://github.com/defenseunicorns/uds-identity-config/issues/516)) ([01a4a83](https://github.com/defenseunicorns/uds-identity-config/commit/01a4a83e8726f6ee935fc47d2313f7a1663d03f6))
+* **deps:** update docker image ghcr.io/zarf-dev/packages/init to v0.55.6 ([#501](https://github.com/defenseunicorns/uds-identity-config/issues/501)) ([81c14ea](https://github.com/defenseunicorns/uds-identity-config/commit/81c14ea9abccdd94d9b7eb72bfa3813c4189e662))
+* **deps:** update gha-deps ([#514](https://github.com/defenseunicorns/uds-identity-config/issues/514)) ([6bec032](https://github.com/defenseunicorns/uds-identity-config/commit/6bec0327627cd6796ff6bf29c34922e3a4332ef3))
+* **deps:** update gha-deps to v0.27.6 ([#504](https://github.com/defenseunicorns/uds-identity-config/issues/504)) ([c821bd7](https://github.com/defenseunicorns/uds-identity-config/commit/c821bd7beae21bf9a46e5b8384c9106a637c21e8))
+* **docs:** sanitize doc naming schemes ([#494](https://github.com/defenseunicorns/uds-identity-config/issues/494)) ([61061d4](https://github.com/defenseunicorns/uds-identity-config/commit/61061d40246c27d8c585b38be874e640e56caeaa))
+* **docs:** value is a YAML sequence ([#512](https://github.com/defenseunicorns/uds-identity-config/issues/512)) ([f1cd32b](https://github.com/defenseunicorns/uds-identity-config/commit/f1cd32b6d710626f96a999c9224456899909b362))
+
+## [0.14.1](https://github.com/defenseunicorns/uds-identity-config/compare/v0.14.0...v0.14.1) (2025-05-27)
+
+
+### Bug Fixes
+
+* **deps:** update plugin-deps to v26.2.4 ([#467](https://github.com/defenseunicorns/uds-identity-config/issues/467)) ([9e8f2c2](https://github.com/defenseunicorns/uds-identity-config/commit/9e8f2c2010a6d1d63c0f939976ba16854bef2f94))
+* require ssl set to none ([#492](https://github.com/defenseunicorns/uds-identity-config/issues/492)) ([7d7b43f](https://github.com/defenseunicorns/uds-identity-config/commit/7d7b43f60c63045fae498dae60a9826d9818a4d5))
+
+
+### Miscellaneous
+
+* cleanup cacert tasks in identity-config ([#480](https://github.com/defenseunicorns/uds-identity-config/issues/480)) ([1c493d8](https://github.com/defenseunicorns/uds-identity-config/commit/1c493d809bc41a1bc98825d3cb89ee9115c3e9d4))
+* **deps:** update all dependencies ([#479](https://github.com/defenseunicorns/uds-identity-config/issues/479)) ([be7926f](https://github.com/defenseunicorns/uds-identity-config/commit/be7926f2c6ff2523a62471a23a89e527ef07bded))
+* **deps:** update all dependencies ([#488](https://github.com/defenseunicorns/uds-identity-config/issues/488)) ([9d9edb8](https://github.com/defenseunicorns/uds-identity-config/commit/9d9edb8ba77b57a573a727c0840b37d721937d6c))
+* **deps:** update dependency defenseunicorns/uds-common to v1.14.4 ([#486](https://github.com/defenseunicorns/uds-identity-config/issues/486)) ([de5a366](https://github.com/defenseunicorns/uds-identity-config/commit/de5a36691f94282b1e8e78dfc0d13ded13f22783))
+* **deps:** update dependency defenseunicorns/uds-core to v0.42.0 ([#477](https://github.com/defenseunicorns/uds-identity-config/issues/477)) ([1e50836](https://github.com/defenseunicorns/uds-identity-config/commit/1e50836d33e4e4375811b03445c5dd3ccfb66ee1))
+* **deps:** update docker image ghcr.io/zarf-dev/packages/init to v0.55.4 ([#491](https://github.com/defenseunicorns/uds-identity-config/issues/491)) ([e393886](https://github.com/defenseunicorns/uds-identity-config/commit/e393886af1a503441e9991dfe08e296193881743))
+* **deps:** update docker image ghcr.io/zarf-dev/packages/init to v0.55.5 ([#493](https://github.com/defenseunicorns/uds-identity-config/issues/493)) ([3232fc7](https://github.com/defenseunicorns/uds-identity-config/commit/3232fc74363caa44a6c0e4120cc834d1c8fbea1e))
+* **deps:** update gha-deps to v0.27.5 ([#489](https://github.com/defenseunicorns/uds-identity-config/issues/489)) ([5ece3e8](https://github.com/defenseunicorns/uds-identity-config/commit/5ece3e8a37495e0e7580e40c75c6315031264736))
+* **deps:** update gha-deps to v19.8.1 ([#466](https://github.com/defenseunicorns/uds-identity-config/issues/466)) ([089742a](https://github.com/defenseunicorns/uds-identity-config/commit/089742a7e45f32e956e16e0634c5d7d7b866f7bd))
+* **docs:** move branding customiation under theme section ([#476](https://github.com/defenseunicorns/uds-identity-config/issues/476)) ([40ba177](https://github.com/defenseunicorns/uds-identity-config/commit/40ba177bdf1c8660f05447b7bd39b8110bcf105d))
+* **docs:** upgrade doc update ([#482](https://github.com/defenseunicorns/uds-identity-config/issues/482)) ([33f1757](https://github.com/defenseunicorns/uds-identity-config/commit/33f17570599cb87a881622133f794966c9f8b82d))
+
+## [0.14.0](https://github.com/defenseunicorns/uds-identity-config/compare/v0.13.1...v0.14.0) (2025-05-12)
+
+
+### Features
+
+* fail the UDS Core Package on validation errors ([#465](https://github.com/defenseunicorns/uds-identity-config/issues/465)) ([8913073](https://github.com/defenseunicorns/uds-identity-config/commit/89130738f3b38506eb956faa9879d0d38d9a0bd5))
+* keycloak FIPS docs ([#468](https://github.com/defenseunicorns/uds-identity-config/issues/468)) ([8e4df8e](https://github.com/defenseunicorns/uds-identity-config/commit/8e4df8e4e0565c8989e907fd5693d7135abd9a83))
+
+
+### Bug Fixes
+
+* **deps:** update plugin-deps to v26.2.3 ([#459](https://github.com/defenseunicorns/uds-identity-config/issues/459)) ([737ce09](https://github.com/defenseunicorns/uds-identity-config/commit/737ce0974d16ba59cd8dce48a41f6e439d4c572d))
+
+
+### Miscellaneous
+
+* **deps:** update all dependencies to v0.54.0 ([#457](https://github.com/defenseunicorns/uds-identity-config/issues/457)) ([e8cad6c](https://github.com/defenseunicorns/uds-identity-config/commit/e8cad6c5ffa5eb328420c58763cd2140735b3aa8))
+* **deps:** update gha-deps to v0.27.2 ([#463](https://github.com/defenseunicorns/uds-identity-config/issues/463)) ([4e17564](https://github.com/defenseunicorns/uds-identity-config/commit/4e175641deefcd9f28d434232249501614459c50))
+* docker image fix ([#471](https://github.com/defenseunicorns/uds-identity-config/issues/471)) ([d6336d9](https://github.com/defenseunicorns/uds-identity-config/commit/d6336d9b73b51cb8cc8bf86b9bbede0d54a1a2f7))
+* **docs:** fix warning block in docs ([#474](https://github.com/defenseunicorns/uds-identity-config/issues/474)) ([21d03d1](https://github.com/defenseunicorns/uds-identity-config/commit/21d03d1e8ec1cceb017f8961403be52df350cea7))
+
+## [0.13.1](https://github.com/defenseunicorns/uds-identity-config/compare/v0.13.0...v0.13.1) (2025-05-06)
+
+
+### Bug Fixes
+
+* add grouplist to default allowed mappers ([#461](https://github.com/defenseunicorns/uds-identity-config/issues/461)) ([a52cc5b](https://github.com/defenseunicorns/uds-identity-config/commit/a52cc5b308fb64604aac53fd74367597df3fe47e))
+* commitlint action ([#456](https://github.com/defenseunicorns/uds-identity-config/issues/456)) ([a6ae430](https://github.com/defenseunicorns/uds-identity-config/commit/a6ae430cdb9b1c34fb8e4af60fb6601bf85f467f))
+* **deps:** update plugin-deps to v26.2.2 ([#449](https://github.com/defenseunicorns/uds-identity-config/issues/449)) ([d38744f](https://github.com/defenseunicorns/uds-identity-config/commit/d38744feb88e4e8b532a3e7acb0cf231a3665fb2))
+* remove dynamic client registration ([#441](https://github.com/defenseunicorns/uds-identity-config/issues/441)) ([e69f1d4](https://github.com/defenseunicorns/uds-identity-config/commit/e69f1d4db60b2b02542ddb5744660dd2e6b62a69))
+* update upgrading-versions.md ([#453](https://github.com/defenseunicorns/uds-identity-config/issues/453)) ([406e0fc](https://github.com/defenseunicorns/uds-identity-config/commit/406e0fc20383a632fc820e401fe11fb1af450779))
+* upgrade docs ([#454](https://github.com/defenseunicorns/uds-identity-config/issues/454)) ([367a8bb](https://github.com/defenseunicorns/uds-identity-config/commit/367a8bb524fb48b6627dddd4235c1054fe6291dc))
+
+
+### Miscellaneous
+
+* **deps:** update dependency defenseunicorns/uds-core to v0.41.0 ([#451](https://github.com/defenseunicorns/uds-identity-config/issues/451)) ([e912748](https://github.com/defenseunicorns/uds-identity-config/commit/e912748dde4b62dc1831b7cc286065f27052b3a9))
+* **deps:** update dependency defenseunicorns/uds-core to v0.41.1 ([#455](https://github.com/defenseunicorns/uds-identity-config/issues/455)) ([d204115](https://github.com/defenseunicorns/uds-identity-config/commit/d204115440c95264318397f36f4843406182e897))
+
+## [0.13.0](https://github.com/defenseunicorns/uds-identity-config/compare/v0.12.1...v0.13.0) (2025-04-25)
+
+
+### Features
+
+* fips mode ([#434](https://github.com/defenseunicorns/uds-identity-config/issues/434)) ([b524962](https://github.com/defenseunicorns/uds-identity-config/commit/b5249620e21c9a27575e4fc0b89380e8ee7e9171))
+* uds policy hardening ([#428](https://github.com/defenseunicorns/uds-identity-config/issues/428)) ([69b3388](https://github.com/defenseunicorns/uds-identity-config/commit/69b3388080d06ac7e61b361eea46f44244e4e435))
+
+
+### Bug Fixes
+
+* **deps:** update plugin-deps to v26.2.0 ([#426](https://github.com/defenseunicorns/uds-identity-config/issues/426)) ([66f3f19](https://github.com/defenseunicorns/uds-identity-config/commit/66f3f19bd0a83c7d99a9c1fd4ac1902f97364792))
+* **deps:** update plugin-deps to v26.2.1 ([#443](https://github.com/defenseunicorns/uds-identity-config/issues/443)) ([cadbcdd](https://github.com/defenseunicorns/uds-identity-config/commit/cadbcddf62b4b50621a8b275b23ec0d1db9d8683))
+* remove test from New DoD PKI Detected banner ([#447](https://github.com/defenseunicorns/uds-identity-config/issues/447)) ([51a3366](https://github.com/defenseunicorns/uds-identity-config/commit/51a336602db68fc9ecf9f0aa2989ca544d16834c))
+
+
+### Miscellaneous
+
+* **deps:** update all dependencies ([#432](https://github.com/defenseunicorns/uds-identity-config/issues/432)) ([3965791](https://github.com/defenseunicorns/uds-identity-config/commit/3965791a7dfeb2fde17f2f13a94161fb1c1cdaa8))
+* **deps:** update all dependencies ([#437](https://github.com/defenseunicorns/uds-identity-config/issues/437)) ([fceb07f](https://github.com/defenseunicorns/uds-identity-config/commit/fceb07f8740a0cea071fa713b05716cdc90e3154))
+* **deps:** update dependency cypress to v14.3.2 ([#439](https://github.com/defenseunicorns/uds-identity-config/issues/439)) ([f524e98](https://github.com/defenseunicorns/uds-identity-config/commit/f524e98c937998bbee6baa4e4f9cb61bbe369c07))
+* **deps:** update dependency defenseunicorns/uds-common to v1.14.2 ([#448](https://github.com/defenseunicorns/uds-identity-config/issues/448)) ([2656408](https://github.com/defenseunicorns/uds-identity-config/commit/2656408473dbe675eb84134b23e3f4169c783722))
+* **deps:** update dependency defenseunicorns/uds-k3d to v0.12.3 ([#436](https://github.com/defenseunicorns/uds-identity-config/issues/436)) ([4642278](https://github.com/defenseunicorns/uds-identity-config/commit/4642278286e30cac36126a251f2c8b246dca0d6e))
+* **deps:** update dependency zarf-dev/zarf to v0.53.0 ([#444](https://github.com/defenseunicorns/uds-identity-config/issues/444)) ([7b85772](https://github.com/defenseunicorns/uds-identity-config/commit/7b8577239a2683fc9ffbef02b7b1aefbcc380be2))
+* **deps:** update docker image ghcr.io/zarf-dev/packages/init to v0.52.1 ([#440](https://github.com/defenseunicorns/uds-identity-config/issues/440)) ([41037e0](https://github.com/defenseunicorns/uds-identity-config/commit/41037e081d5a13e2c5198747a1d097aa600ebe0d))
+* **deps:** update gha-deps to v0.26.2 ([#435](https://github.com/defenseunicorns/uds-identity-config/issues/435)) ([403c0dc](https://github.com/defenseunicorns/uds-identity-config/commit/403c0dc1443a34191da4ea599d4b9300712d6b08))
+* **deps:** update gha-deps to v0.27.0 ([#442](https://github.com/defenseunicorns/uds-identity-config/issues/442)) ([fae7a13](https://github.com/defenseunicorns/uds-identity-config/commit/fae7a13da94ecce6cd151eb06a9eddb93430a35a))
+* **deps:** update gha-deps to v0.27.1 ([#445](https://github.com/defenseunicorns/uds-identity-config/issues/445)) ([4e99c75](https://github.com/defenseunicorns/uds-identity-config/commit/4e99c755efc697744fd32fd95a98dd5c461e9df8))
+* small doc change ([#438](https://github.com/defenseunicorns/uds-identity-config/issues/438)) ([8645f4b](https://github.com/defenseunicorns/uds-identity-config/commit/8645f4b12bb85c6ebe71259e3984af79ee0a7e70))
+
+## [0.12.1](https://github.com/defenseunicorns/uds-identity-config/compare/v0.12.0...v0.12.1) (2025-04-14)
+
+
+### Miscellaneous
+
+* rename task ([#430](https://github.com/defenseunicorns/uds-identity-config/issues/430)) ([bd9db31](https://github.com/defenseunicorns/uds-identity-config/commit/bd9db31bd485ebe79815720ebb95f2074809f3c1))
+
+## [0.12.0](https://github.com/defenseunicorns/uds-identity-config/compare/v0.11.1...v0.12.0) (2025-04-14)
+
+
+### Features
+
+* configurable Terms and Conditions ([#400](https://github.com/defenseunicorns/uds-identity-config/issues/400)) ([00d9f37](https://github.com/defenseunicorns/uds-identity-config/commit/00d9f370a01fd860fda546a4d4703403c13d926c))
+* escape slashes in Keycloak Group names ([#416](https://github.com/defenseunicorns/uds-identity-config/issues/416)) ([a5ed8bc](https://github.com/defenseunicorns/uds-identity-config/commit/a5ed8bc5b57688c6f777dc41eefae23d6c027a3d))
+* remove test realm.json ([#422](https://github.com/defenseunicorns/uds-identity-config/issues/422)) ([0b98a6f](https://github.com/defenseunicorns/uds-identity-config/commit/0b98a6f09728c1b70040b806b409bc019e940b80))
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.projectlombok:lombok to v1.18.38 ([#401](https://github.com/defenseunicorns/uds-identity-config/issues/401)) ([24cdc5c](https://github.com/defenseunicorns/uds-identity-config/commit/24cdc5cd094aff63baeeaf9357f68c0cc144c7b0))
+* rename disable registration fields ([#396](https://github.com/defenseunicorns/uds-identity-config/issues/396)) ([1e7c874](https://github.com/defenseunicorns/uds-identity-config/commit/1e7c874657ff364cb7d763cfbc2ececa4466fc7b))
+* update cypress cac certs ([#418](https://github.com/defenseunicorns/uds-identity-config/issues/418)) ([54eb0ff](https://github.com/defenseunicorns/uds-identity-config/commit/54eb0ffaa92b2a1b9bdac64d7787f3cab805776c))
+
+
+### Miscellaneous
+
+* cleanup misc code ([#425](https://github.com/defenseunicorns/uds-identity-config/issues/425)) ([18dd745](https://github.com/defenseunicorns/uds-identity-config/commit/18dd745096978d841b9264e3e4b286306b9b7a23))
+* **deps:** update actions/setup-node action to v4.4.0 ([#427](https://github.com/defenseunicorns/uds-identity-config/issues/427)) ([4b707ed](https://github.com/defenseunicorns/uds-identity-config/commit/4b707edff6a8753075ed81467132e3356db4aa8b))
+* **deps:** update all dependencies ([#406](https://github.com/defenseunicorns/uds-identity-config/issues/406)) ([781404c](https://github.com/defenseunicorns/uds-identity-config/commit/781404cdad6346e062e31866793d9e443eebc0f5))
+* **deps:** update all dependencies ([#420](https://github.com/defenseunicorns/uds-identity-config/issues/420)) ([15821d1](https://github.com/defenseunicorns/uds-identity-config/commit/15821d10aaa43e7d4a016c019d25a4183912fa02))
+* **deps:** update all dependencies to v0.51.0 ([#414](https://github.com/defenseunicorns/uds-identity-config/issues/414)) ([42f54f7](https://github.com/defenseunicorns/uds-identity-config/commit/42f54f7be68516f33b97da1a31c41df38ec4e18f))
+* **deps:** update dependency defenseunicorns/uds-common to v1.14.0 ([#429](https://github.com/defenseunicorns/uds-identity-config/issues/429)) ([0f97879](https://github.com/defenseunicorns/uds-identity-config/commit/0f978790c491a8a4a7b3eaf2f89989a01da3d45b))
+* **deps:** update dependency defenseunicorns/uds-k3d to v0.12.2 ([#423](https://github.com/defenseunicorns/uds-identity-config/issues/423)) ([ef9abc3](https://github.com/defenseunicorns/uds-identity-config/commit/ef9abc3141a7bc1ef517c4696d8cd1da7ce5eff8))
+* **deps:** update dependency org.jacoco:jacoco-maven-plugin to v0.8.13 ([#410](https://github.com/defenseunicorns/uds-identity-config/issues/410)) ([bc86e96](https://github.com/defenseunicorns/uds-identity-config/commit/bc86e9698950616b5060bddb36ee7295facb4fff))
+* **deps:** update dependency typescript to v5.8.3 ([#415](https://github.com/defenseunicorns/uds-identity-config/issues/415)) ([9911e23](https://github.com/defenseunicorns/uds-identity-config/commit/9911e23050f46bff3e12315539c0ae920d344a7a))
+* **deps:** update gha-deps ([#421](https://github.com/defenseunicorns/uds-identity-config/issues/421)) ([51cb6a5](https://github.com/defenseunicorns/uds-identity-config/commit/51cb6a59dc647ec335df9a53f5033e5acfc7bda1))
+* **docs:** update air gapped limitations for x509 ([#413](https://github.com/defenseunicorns/uds-identity-config/issues/413)) ([ce63e8a](https://github.com/defenseunicorns/uds-identity-config/commit/ce63e8ae7b8784fa3eee2c5a74668ce869f3c585))
+* revert to latest core for tasks ([#408](https://github.com/defenseunicorns/uds-identity-config/issues/408)) ([ab84e94](https://github.com/defenseunicorns/uds-identity-config/commit/ab84e94ba263eadf14945216a3421142cca6b991))
+
+## [0.11.1](https://github.com/defenseunicorns/uds-identity-config/compare/v0.11.0...v0.11.1) (2025-03-31)
+
+
+### Bug Fixes
+
+* rename auth flow ([#404](https://github.com/defenseunicorns/uds-identity-config/issues/404)) ([a3e19e1](https://github.com/defenseunicorns/uds-identity-config/commit/a3e19e1693f5ddc797eee74b8749681a1453ff55))
+
+## [0.11.0](https://github.com/defenseunicorns/uds-identity-config/compare/v0.10.2...v0.11.0) (2025-03-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* AWS has a character limit that is applied to the Tag value, which is where the groups are mapped from when utilizing the UDS Core AWS Group Mapper. This fix filters groups to only include groups containing a `-aws-` string.
+
+### Features
+
+* add alternative subflow for idp redirector ([#383](https://github.com/defenseunicorns/uds-identity-config/issues/383)) ([eb70131](https://github.com/defenseunicorns/uds-identity-config/commit/eb70131dacda763bc71625dbbf6d076dd7198ca0))
+* pepr Keycloak Client management ([#358](https://github.com/defenseunicorns/uds-identity-config/issues/358)) ([70cdb8a](https://github.com/defenseunicorns/uds-identity-config/commit/70cdb8a20ebcfc977a5036f135f0555f2d2524ab))
+* theme customization ([#387](https://github.com/defenseunicorns/uds-identity-config/issues/387)) ([12a46f0](https://github.com/defenseunicorns/uds-identity-config/commit/12a46f08f89f7c67502887fd5e97ee751968605d))
+* webauthn and mfa everywhere ([#380](https://github.com/defenseunicorns/uds-identity-config/issues/380)) ([aaf0d39](https://github.com/defenseunicorns/uds-identity-config/commit/aaf0d3991af0b0e6313ded65b0dda8af42202fc7))
+
+
+### Bug Fixes
+
+* add credential deletion configuration ([#398](https://github.com/defenseunicorns/uds-identity-config/issues/398)) ([83bc044](https://github.com/defenseunicorns/uds-identity-config/commit/83bc044f4597f4405a45fd020df3332c945234f1))
+* broken cypress tests ([#360](https://github.com/defenseunicorns/uds-identity-config/issues/360)) ([efa7ffe](https://github.com/defenseunicorns/uds-identity-config/commit/efa7ffeca1286683131e934d34296e2415c7d254))
+* broken docs link ([#355](https://github.com/defenseunicorns/uds-identity-config/issues/355)) ([45067dd](https://github.com/defenseunicorns/uds-identity-config/commit/45067dd2b8c141d186bc557c575504202787640a))
+* **deps:** update plugin-deps ([#357](https://github.com/defenseunicorns/uds-identity-config/issues/357)) ([54f74a7](https://github.com/defenseunicorns/uds-identity-config/commit/54f74a78444a173341d27723eec2f016e2087ef4))
+* **deps:** update plugin-deps to v26.1.4 ([#370](https://github.com/defenseunicorns/uds-identity-config/issues/370)) ([4a089d8](https://github.com/defenseunicorns/uds-identity-config/commit/4a089d8f01f4411835a18907d8b9773072ee30f5))
+* limit aws groups mapper to only groups with -aws- in name (https://github.com/defenseunicorns/uds-identity-config/pull/378) ([6141004](https://github.com/defenseunicorns/uds-identity-config/commit/6141004359187bc8be3de488fe7c0260f7993542))
+
+
+### Miscellaneous
+
+* **deps:** update actions/setup-node action to v4.3.0 ([#377](https://github.com/defenseunicorns/uds-identity-config/issues/377)) ([e54e416](https://github.com/defenseunicorns/uds-identity-config/commit/e54e4164e9a7d6ff3d5b2dba4aa63db95910d18e))
+* **deps:** update actions/upload-artifact action to v4.6.2 ([#391](https://github.com/defenseunicorns/uds-identity-config/issues/391)) ([ba20f23](https://github.com/defenseunicorns/uds-identity-config/commit/ba20f230eba4c758054862a49f72b735b7ae19e2))
+* **deps:** update all dependencies ([#349](https://github.com/defenseunicorns/uds-identity-config/issues/349)) ([ab852f8](https://github.com/defenseunicorns/uds-identity-config/commit/ab852f8d380ceff0f46f1fe77c42c8276a18fdd3))
+* **deps:** update all dependencies ([#361](https://github.com/defenseunicorns/uds-identity-config/issues/361)) ([0f293f5](https://github.com/defenseunicorns/uds-identity-config/commit/0f293f5d8148dfef42d3882ac8047a45e5afab1a))
+* **deps:** update all dependencies ([#382](https://github.com/defenseunicorns/uds-identity-config/issues/382)) ([018e74f](https://github.com/defenseunicorns/uds-identity-config/commit/018e74f6ef82ce372df919f1b21297a7a2bfbdaa))
+* **deps:** update all dependencies ([#388](https://github.com/defenseunicorns/uds-identity-config/issues/388)) ([fb1e21b](https://github.com/defenseunicorns/uds-identity-config/commit/fb1e21b09f0a83539671b66a1ddc6c036696969e))
+* **deps:** update dependency cypress to v14.2.0 ([#371](https://github.com/defenseunicorns/uds-identity-config/issues/371)) ([e7f8593](https://github.com/defenseunicorns/uds-identity-config/commit/e7f859368e0c9aba68677c37daa845e056936205))
+* **deps:** update dependency defenseunicorns/uds-common to v1.10.2 ([#366](https://github.com/defenseunicorns/uds-identity-config/issues/366)) ([dc7ab7d](https://github.com/defenseunicorns/uds-identity-config/commit/dc7ab7d53a5e662ddae36b8ebfc842516bcf2e52))
+* **deps:** update dependency defenseunicorns/uds-common to v1.10.3 ([#367](https://github.com/defenseunicorns/uds-identity-config/issues/367)) ([fe4c7f7](https://github.com/defenseunicorns/uds-identity-config/commit/fe4c7f7abf437850281ad3f7b65d6e95b074969b))
+* **deps:** update dependency defenseunicorns/uds-common to v1.11.2 ([#392](https://github.com/defenseunicorns/uds-identity-config/issues/392)) ([cb43062](https://github.com/defenseunicorns/uds-identity-config/commit/cb4306205121e5265fb8d15dedc943b81c924f21))
+* **deps:** update dependency zarf-dev/zarf to v0.49.1 ([#362](https://github.com/defenseunicorns/uds-identity-config/issues/362)) ([b320ec2](https://github.com/defenseunicorns/uds-identity-config/commit/b320ec2ba1ad1fdfaea629ca28d5aadb62b778a1))
+* **deps:** update docker image ghcr.io/defenseunicorns/packages/uds-k3d to v0.12.1 ([#393](https://github.com/defenseunicorns/uds-identity-config/issues/393)) ([763752d](https://github.com/defenseunicorns/uds-identity-config/commit/763752da6ade329f9288fe01d468360cdbd3543a))
+* **deps:** update docker image ghcr.io/zarf-dev/packages/init to v0.49.1 ([#363](https://github.com/defenseunicorns/uds-identity-config/issues/363)) ([361b0b8](https://github.com/defenseunicorns/uds-identity-config/commit/361b0b87fed70a3b13b633737125c6a8dbf4b794))
+* **deps:** update docker/login-action action to v3.4.0 ([#374](https://github.com/defenseunicorns/uds-identity-config/issues/374)) ([c92956c](https://github.com/defenseunicorns/uds-identity-config/commit/c92956cfd7d072cbb9c67c53e47236d688145aa9))
+* **deps:** update gha-deps ([#356](https://github.com/defenseunicorns/uds-identity-config/issues/356)) ([4af68da](https://github.com/defenseunicorns/uds-identity-config/commit/4af68dae52c87cd0f36bbe1f48523a5ee5b0beed))
+* **deps:** update gha-deps to v0.23.0 ([#364](https://github.com/defenseunicorns/uds-identity-config/issues/364)) ([639a77d](https://github.com/defenseunicorns/uds-identity-config/commit/639a77d1a62a169304da6859c4cd1a7507b09265))
+* **deps:** update gha-deps to v0.24.0 ([#376](https://github.com/defenseunicorns/uds-identity-config/issues/376)) ([c3bb9f1](https://github.com/defenseunicorns/uds-identity-config/commit/c3bb9f1373dff215c5c62fbe36341e8529e90b84))
+* **deps:** update gha-deps to v0.25.0 ([#384](https://github.com/defenseunicorns/uds-identity-config/issues/384)) ([da1dea3](https://github.com/defenseunicorns/uds-identity-config/commit/da1dea3a5eb82af4f10223d8aa497c60376765af))
+* **deps:** update gha-deps to v19.8.0 ([#365](https://github.com/defenseunicorns/uds-identity-config/issues/365)) ([be3f7c7](https://github.com/defenseunicorns/uds-identity-config/commit/be3f7c778c67e8ba0071c96b5c9a33d1c61d65af))
+* **deps:** update plugin-deps to v3.5.3 ([#399](https://github.com/defenseunicorns/uds-identity-config/issues/399)) ([b0e3d52](https://github.com/defenseunicorns/uds-identity-config/commit/b0e3d52e3a5249053d645ae78724de7c67aee662))
+* **doc:** add new section about upgrading identity config ([#353](https://github.com/defenseunicorns/uds-identity-config/issues/353)) ([67c99a8](https://github.com/defenseunicorns/uds-identity-config/commit/67c99a8d711382a73737a585149a0d18cd4153fb))
+* update doc for custom image ([#375](https://github.com/defenseunicorns/uds-identity-config/issues/375)) ([2cd4955](https://github.com/defenseunicorns/uds-identity-config/commit/2cd4955b4044a1c557cbf5500b3992ddf9c5f721))
+
 ## [0.10.2](https://github.com/defenseunicorns/uds-identity-config/compare/v0.10.1...v0.10.2) (2025-02-21)
 
 

@@ -80,7 +80,7 @@
                         <div class="${properties.kcInputWrapperClass!}">
                             <label for="totp" class="control-label">
                                 ${msg("authenticatorCode")}
-                            </label> <span class="required">*</span>
+                            </label>
                         </div>
                         <div class="${properties.kcInputWrapperClass!}">
                             <input type="text" id="totp" name="totp" autocomplete="off" class="${properties.kcInputClass!}"
@@ -99,7 +99,7 @@
                             <label for="userLabel" class="control-label">
                                 ${msg("loginTotpDeviceName")}
                             </label>
-                            <#if totp.otpCredentials?size gte 1><span class="required">*</span></#if>
+                            <#if totp.otpCredentials?size gte 1></#if>
                         </div>
                         <div class="${properties.kcInputWrapperClass!}">
                             <input type="text" class="${properties.kcInputClass!}" id="userLabel" name="userLabel" autocomplete="off"
@@ -111,6 +111,7 @@
                             </#if>
                         </div>
                     </div>
+                    <div class="${properties.kcFormGroupClass!} form-button-container">
                     <#if isAppInitiatedAction??>
                         <input type="submit"
                             class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}"
@@ -125,6 +126,7 @@
                                 class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!} ${properties.kcButtonLargeClass!}"
                                 id="saveTOTPBtn" value="${msg("doSubmit")}" />
                     </#if>
+                    </div>
                 </form>
         </#if>
     </@layout.registrationLayout>

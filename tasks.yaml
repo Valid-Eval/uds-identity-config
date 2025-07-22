@@ -2,12 +2,16 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later OR LicenseRef-Defense-Unicorns-Commercial
 
 includes:
-  - remote: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.10.3/tasks/lint.yaml
+  - remote: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.16.4/tasks/lint.yaml
+  - common-setup: https://raw.githubusercontent.com/defenseunicorns/uds-common/v1.16.4/tasks/setup.yaml
+  - setup: ./tasks/setup.yaml
 
 variables:
   - name: VERSION
     description: "The image tag"
-    default: "0.10.3"
+    # x-release-please-start-version
+    default: "0.16.0"
+    # x-release-please-end
 
   - name: IMAGE_NAME
     description: "The repository + name for the published image"
@@ -16,7 +20,7 @@ variables:
   - name: CORE_VERSION
     description: UDS Core Version for Releases and Clone
     # renovate: datasource=github-tags depName=defenseunicorns/uds-core versioning=semver
-    default: "v0.37.0"
+    default: "v0.46.0"
 
 tasks:
   - name: build-zarf-pkg
@@ -37,7 +41,7 @@ tasks:
   - name: dev-build
     description: "Build the image locally for dev"
     actions:
-      - cmd: docker build src -t uds-core-config:keycloak --no-cache
+      - cmd: docker build src -t uds-core-config:keycloak
 
   - name: dev-update-image
     description: "Build the image and import locally into k3d"
@@ -45,6 +49,8 @@ tasks:
       - task: dev-build
       - cmd: |
           k3d image import -c uds uds-core-config:keycloak
+          kubectl patch statefulset keycloak -n keycloak --type='merge' -p '{"metadata":{"labels":{"zarf.dev/agent":"ignore"}}}'
+          kubectl patch statefulset keycloak -n keycloak --type='merge' -p '{"spec":{"template":{"metadata":{"labels":{"zarf.dev/agent":"ignore"}}}}}'
           kubectl rollout restart statefulset -n keycloak keycloak
 
   - name: dev-theme
@@ -62,8 +68,8 @@ tasks:
           cd src/plugin
           mvn clean verify | egrep ".*"
 
-  - name: cacert
-    description: "Get the CA cert value for the Istio Gateway"
+  - name: dev-cacert
+    description: "Get the CA cert value for the Istio Gateway from your local build"
     actions:
       # This is written to a file rather than printed because it is a massive value to copy out of the terminal
       - cmd: |
@@ -71,7 +77,7 @@ tasks:
           tls:
             cacert: "$(docker run --rm --entrypoint sh uds-core-config:keycloak -c 'cat /home/nonroot/authorized_certs.pem | base64 -w 0')"
           EOF
-          echo "Base64 encoded CA Cert value is in cacert.b64, this can be passed to your Istio tenant gateway for Keycloak OPTIONAL_MUTUAL"
+          echo "CA Cert values are in tls_cacert.yaml, this can be provided to your Istio gateway(s) for Keycloak OPTIONAL_MUTUAL"
 
   - name: debug-istio-traffic
     description: "Debug Istio traffic on keycloak"
@@ -108,12 +114,24 @@ tasks:
   - name: uds-core-integration-tests
     description: "UDS Core + Identity Config Integration Testing"
     actions:
+      - task: uds-core-integration-setup
+      - task: integration-tests
+
+  - name: uds-core-integration-setup
+    description: "UDS Core + Identity Config Integration Setup"
+    actions:
       - description: Build identity config image
-        cmd: docker build --build-arg CA_ZIP_URL="test/cypress/certs/authorized_certs.zip" --build-arg REALM_FILE="test/cypress/realm.json" -t uds-core-config:keycloak --no-cache src
+        cmd: docker build --build-arg CA_ZIP_URL="test/cypress/certs/authorized_certs.zip" -t uds-core-config:keycloak --no-cache src
       - task: clone-core
       - task: uds-core-gateway-cacert
       - task: build-deploy-custom-slim
+
+  - name: integration-tests
+    description: "Integration Tests"
+    actions:
       - task: cypress-tests
+      - task: theme-customization-tests
+      - task: external-loadbalancer-tests
 
   - name: grafana-group-auth-build-deploy
     description: Configure existing uds-core/grafana package for group authz, build, deploy grafana
@@ -131,17 +149,36 @@ tasks:
   - name: clone-core
     description: "Clone UDS Core for integration testing"
     actions:
-      - cmd: rm -rf uds-core/
-      - cmd: git clone --branch ${CORE_VERSION} https://github.com/defenseunicorns/uds-core.git
+      - cmd: rm -rf uds-core
+      - cmd: git clone --branch main https://github.com/defenseunicorns/uds-core.git
 
   - name: build-deploy-custom-slim
     description: "Build/Deploy custom slim dev bundle for integration testing"
     actions:
       - cmd: uds zarf package create . --confirm --set=IDENTITY_CONFIG_IMG=uds-core-config:keycloak --no-progress
-      - cmd: cd uds-core && uds run create:single-layer && uds run create:single-layer-callable --set LAYER=identity-authorization
+      - cmd: cd uds-core && mkdir -p build && uds run create:single-layer && uds run create:single-layer-callable --set LAYER=identity-authorization
       - task: grafana-group-auth-build-deploy
-      - cmd: uds create bundles --confirm --no-progress
-      - cmd: uds deploy bundles/uds-bundle-k3d-core-slim-dev-*.tar.zst --set=core-identity-authorization.KEYCLOAK_CONFIG_IMAGE=uds-core-config:keycloak --confirm --no-progress
+      - cmd: uds create bundles/k3d-core-slim-dev --confirm --no-progress
+      - cmd: uds deploy bundles/k3d-core-slim-dev/uds-bundle-k3d-core-slim-dev-*.tar.zst --set=core-identity-authorization.KEYCLOAK_CONFIG_IMAGE=uds-core-config:keycloak --confirm --no-progress
+      - task: create-users
+
+  - name: create-users
+    description: "Creating users needed by the tests"
+    actions:
+      # Calling this explicitly even though it's also called by setup:keycloak-user. During the testing we often need it.
+      - task: common-setup:keycloak-admin-user
+      - description: "Create the Auditor User (testing_user) in the UDS Core realm"
+        task: common-setup:keycloak-user
+        with:
+          group: "/UDS Core/Auditor"
+          username: "testing_user"
+          password: "Testingpassword1!!"
+      - description: "Create the Admin User (testing_admin) in the UDS Core realm"
+        task: common-setup:keycloak-user
+        with:
+          group: "/UDS Core/Admin"
+          username: "testing_admin"
+          password: "Testingpassword1!!"
 
   - name: cypress-tests
     description: "Run all cypress tests ( requires an existing deployed UDS Core Identity )"
@@ -149,6 +186,50 @@ tasks:
       - cmd: |
           npm --prefix src/test/cypress install
           npm --prefix src/test/cypress run cy.run
+
+  - name: theme-customization-tests
+    description: "Runs theme customization tests ( requires an existing deployed UDS Core Identity )"
+    actions:
+      - description: "Create theme customization resources"
+        cmd: uds zarf tools kubectl apply -f tasks/theme-customization-configmap.yaml
+      - description: "Create the theme customization bundle"
+        cmd: uds create bundles/theme-customizations --confirm --no-progress
+      - description: "Remove the existing package to enforce Keycloak Realm reinit (ignores errors if it doesn't exist)"
+        cmd: |
+          uds zarf package remove core-identity-authorization --confirm || true
+          uds zarf tools kubectl delete secret keycloak-admin-password -n keycloak --ignore-not-found
+      - description: "Deploy the theme customization bundle"
+        cmd: uds deploy bundles/theme-customizations/uds-bundle-theme-customization-tests-*.tar.zst --set=core-identity-authorization.KEYCLOAK_CONFIG_IMAGE=uds-core-config:keycloak --confirm --no-progress
+      - description: "Recreate users"
+        task: create-users
+      - description: "Run the theme customization tests"
+        cmd: |
+          # Should already be done... but just in case
+          npm --prefix src/test/cypress install
+          npm --prefix src/test/cypress run cy.run:theme-customization
+
+  - name: external-loadbalancer-tests
+    description: "Runs External Load Balancer tests ( requires an existing deployed UDS Core Identity )"
+    actions:
+      - description: "Create the external load balancer bundle"
+        cmd: uds create bundles/external-loadbalancer --confirm --no-progress
+      - description: "Remove the existing package to enforce Keycloak Realm reinit (ignores errors if it doesn't exist)"
+        cmd: |
+          uds zarf package remove core-identity-authorization --confirm || true
+          uds zarf tools kubectl delete secret keycloak-admin-password -n keycloak --ignore-not-found
+      - description: "Deploy the theme customization bundle"
+        cmd: uds deploy bundles/external-loadbalancer/uds-bundle-external-loadbalancer-*.tar.zst --set=core-identity-authorization.KEYCLOAK_CONFIG_IMAGE=uds-core-config:keycloak --confirm --no-progress
+      - description: "Recreate users"
+        task: create-users
+      - description: "Setup the infrastructure for the external load balancer"
+        cmd: uds run setup:external-loadbalancer
+      - description: "Run Cypress tests with the external load balancer"
+        cmd: |
+            # Should already be done... but just in case
+            npm --prefix src/test/cypress install
+            npm --prefix src/test/cypress run cy.run:external-load-balancer
+      - description: "Restore the k3d Load Balancer"
+        cmd: uds run setup:restore-k3d-loadbalancer
 
   - name: license
     actions:
