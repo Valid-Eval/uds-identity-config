@@ -8,7 +8,7 @@ on:
     branches: [main]
     # milestoned is added here as a workaround for release-please not triggering PR workflows (PRs should be added to a milestone to trigger the workflow).
     # labeled is added here to allow for "manual" triggering of CI on renovate PRs
-    types: [milestoned, opened, reopened, synchronize, labeled]
+    types: [milestoned, opened, reopened, edited, synchronize, labeled]
 
 jobs:
   title_check:
@@ -24,17 +24,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Check renovate readiness
-        if: startsWith(github.event.pull_request.head.ref, 'renovate/') # Only call for Renovate PRs
-        uses: ./.github/actions/renovate-readiness
-
       - name: Setup Node.js
-        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4.2.0
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
 
       - name: Install commitlint
         run: |
-          npm install --save-dev @commitlint/config-conventional@19.8.0
-          npm install --save-dev @commitlint/cli@19.8.0
+          npm install --save-dev @commitlint/config-conventional@19.8.1
+          npm install --save-dev @commitlint/cli@19.8.1
 
       - name: Lint PR title
         env:
@@ -42,6 +38,8 @@ jobs:
         run: echo "$pull_request_title" | npx commitlint
 
   lint-check:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

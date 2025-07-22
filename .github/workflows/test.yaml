@@ -8,6 +8,21 @@ on:
     branches: [main]
     # labeled is added here to allow for "manual" triggering of CI on renovate PRs
     types: [milestoned, opened, reopened, synchronize, labeled]
+    paths-ignore:
+      - "**.md"
+      - "**.jpg"
+      - "**.png"
+      - "**.gif"
+      - "**.svg"
+      - docs/**
+      - .vscode/**
+      - .gitignore
+      - renovate.json
+      - .release-please-config.json
+      - .codespellrc
+      - release-please-config.json
+      - CODEOWNERS
+      - LICENSE
 
 # Abort prior jobs in the same workflow / PR
 concurrency:
@@ -26,17 +41,12 @@ jobs:
       - name: Github Actions Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
-      - name: Check renovate readiness
-        if: startsWith(github.event.pull_request.head.ref, 'renovate/') # Only call for Renovate PRs
-        uses: ./.github/actions/renovate-readiness
-
       - name: Environment setup
         uses: ./.github/actions/setup
         with:
           registry1Username: ${{ secrets.IRON_BANK_ROBOT_USERNAME }}
           registry1Password: ${{ secrets.IRON_BANK_ROBOT_PASSWORD }}
           ghToken: ${{ secrets.GITHUB_TOKEN }}
-          chainguardIdentity: ${{ secrets.CHAINGUARD_IDENTITY }}
 
       - name: Test building the docker image
         run: uds run dev-build --no-progress
@@ -58,7 +68,6 @@ jobs:
           registry1Username: ${{ secrets.IRON_BANK_ROBOT_USERNAME }}
           registry1Password: ${{ secrets.IRON_BANK_ROBOT_PASSWORD }}
           ghToken: ${{ secrets.GITHUB_TOKEN }}
-          chainguardIdentity: ${{ secrets.CHAINGUARD_IDENTITY }}
 
       - name: Test building a zarf package
         run: uds run build-zarf-pkg --no-progress
@@ -80,13 +89,12 @@ jobs:
           registry1Username: ${{ secrets.IRON_BANK_ROBOT_USERNAME }}
           registry1Password: ${{ secrets.IRON_BANK_ROBOT_PASSWORD }}
           ghToken: ${{ secrets.GITHUB_TOKEN }}
-          chainguardIdentity: ${{ secrets.CHAINGUARD_IDENTITY }}
 
       - name: Set up JDK 17
-        uses: actions/setup-java@3a4f6e1af504cf6a31855fa899c6aa5355ba6c12 # v4
+        uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          java-version: "17"
+          distribution: "temurin"
 
       - name: Plugin Unit Tests
         run: mvn -B package --file src/plugin/pom.xml
@@ -108,10 +116,19 @@ jobs:
           registry1Username: ${{ secrets.IRON_BANK_ROBOT_USERNAME }}
           registry1Password: ${{ secrets.IRON_BANK_ROBOT_PASSWORD }}
           ghToken: ${{ secrets.GITHUB_TOKEN }}
-          chainguardIdentity: ${{ secrets.CHAINGUARD_IDENTITY }}
 
       - name: Smoke Tests
         run: uds run uds-core-smoke-test --no-progress
+
+      - name: Debug Output
+        if: ${{ always() }}
+        uses: ./.github/actions/debug-output
+
+      - name: Save logs
+        if: always()
+        uses: ./.github/actions/save-logs
+        with:
+          suffix: -uds_core_base_integration
 
   uds_core_cypress_integration:
     runs-on: ubuntu-latest
@@ -130,7 +147,16 @@ jobs:
           registry1Username: ${{ secrets.IRON_BANK_ROBOT_USERNAME }}
           registry1Password: ${{ secrets.IRON_BANK_ROBOT_PASSWORD }}
           ghToken: ${{ secrets.GITHUB_TOKEN }}
-          chainguardIdentity: ${{ secrets.CHAINGUARD_IDENTITY }}
 
       - name: Cypress Integration Tests
         run: uds run uds-core-integration-tests --no-progress
+
+      - name: Debug Output
+        if: ${{ always() }}
+        uses: ./.github/actions/debug-output
+
+      - name: Save logs
+        if: always()
+        uses: ./.github/actions/save-logs
+        with:
+          suffix: -uds_core_cypress_integration
