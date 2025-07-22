@@ -138,7 +138,7 @@ ${msg("loginTitle",(realm.displayName!''))}
             </div>
             </div>
             <footer class="fixed-footer">
-                <img src="${url.resourcesPath}/img/ve/long-logo.png" />
+                <img src="${url.resourcesPath}/img/ve/long-logo.png" alt="Footer"/>
             </footer>
             </body>
 
