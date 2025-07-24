@@ -37,7 +37,7 @@ tasks:
       - cmd: |
           ARCH=amd64
           PACKAGE_VERSION=$(uds zarf tools yq '.metadata.version' ./zarf.yaml)
-          uds zarf package publish zarf-package-keycloak-identity-config-${ARCH}-${PACKAGE_VERSION}.tar.zst oci://${IMAGE_NAME}
+          uds zarf package publish zarf-package-uds-identity-config-${ARCH}-${PACKAGE_VERSION}.tar.zst oci://${IMAGE_NAME}
 
   - name: dev-build
     description: "Build the image locally for dev"
