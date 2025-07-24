@@ -3,8 +3,8 @@
 
 kind: ZarfPackageConfig
 metadata:
-  name: keycloak-identity-config
-  version: 0.16.0-VE.0
+  name: uds-identity-config
+  version: 0.16.1-VE.0
 
 constants:
   - name: IDENTIFY_CONFIG_IMG
